@@ -1,0 +1,18 @@
+version: 0.0  # Specifies the version number of the file format.
+
+os: linux  # Specifies the operating system to be used.
+
+files:  # An array of files to be copied from the source to the destination directory.
+  - source: /
+    destination: /var/www/html  # Specifies the destination directory where the files will be copied to.
+
+hooks:  # An array of scripts to be executed at different points during the deployment process.
+  AfterInstall:  # Specifies a script to be executed after the installation of the application.
+    - location: scripts/install_nginx.sh  # Specifies the location of the script file to be executed.
+      timeout: 300  # Specifies the maximum amount of time in seconds that the script can run for.
+      runas: root  # Specifies the user that the script should be run as.
+
+  ApplicationStart:  # Specifies a script to be executed after the application has started.
+    - location: scripts/start_nginx.sh
+      timeout: 300
+      runas: root
